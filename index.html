@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Position Sizing Calculator | Forex &amp; Gold</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">⚡ ForexCalc Pro</div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span class="theme-icon">🌙</span>
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Smart Risk. Confident Trades.</h1>
+            <p class="hero-subtitle">Calculate perfect position size based on risk and reward instantly.</p>
+            <button class="btn btn-hero" id="getStartedBtn">Get Started</button>
+        </div>
+        
+        <!-- Live Price Ticker -->
+        <div class="price-ticker">
+            <div class="ticker-item">
+                <span class="ticker-label">EUR/USD</span>
+                <span class="ticker-price" id="priceEURUSD">1.0850</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-label">USD/JPY</span>
+                <span class="ticker-price" id="priceUSDJPY">149.50</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-label">GBP/USD</span>
+                <span class="ticker-price" id="priceGBPUSD">1.2145</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="calculatorSection">
+        <div class="container">
+            <div class="calculator-grid">
+                <!-- Calculator Card -->
+                <div class="card calculator-card">
+                    <h2 class="card-title">Position Size Calculator</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="accountBalance">
+                            Account Balance
+                            <span class="info-icon" data-tooltip="Your total trading account balance">ℹ️</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <span class="input-prefix" id="currencyPrefix">$</span>
+                            <input type="number" id="accountBalance" class="form-input" placeholder="10000" step="100" min="0" data-unit="currency">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="accountCurrency">Account Currency</label>
+                        <select id="accountCurrency" class="form-select">
+                            <option value="USD">USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                            <option value="JPY">JPY - Japanese Yen</option>
+                            <option value="CHF">CHF - Swiss Franc</option>
+                            <option value="AUD">AUD - Australian Dollar</option>
+                            <option value="NZD">NZD - New Zealand Dollar</option>
+                            <option value="CAD">CAD - Canadian Dollar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="riskPercent">
+                            Risk % per Trade
+                            <span class="info-icon" data-tooltip="Percentage of account to risk on this trade">ℹ️</span>
+                        </label>
+                        <div class="dynamic-hint" id="riskHint">💡 Professional traders risk 1-2% per trade.</div>
+                        <div class="slider-container">
+                            <input type="range" id="riskSlider" class="risk-slider" min="0.1" max="10" step="0.1" value="1">
+                            <input type="number" id="riskPercent" class="slider-input" min="0.1" max="10" step="0.1" value="1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="currencyPair">Currency Pair / Asset</label>
+                        <select id="currencyPair" class="form-select">
+                            <optgroup label="Major Pairs">
+                                <option value="EURUSD">EUR/USD - Euro / US Dollar</option>
+                                <option value="USDJPY">USD/JPY - US Dollar / Japanese Yen</option>
+                                <option value="GBPUSD">GBP/USD - British Pound / US Dollar</option>
+                                <option value="USDCHF">USD/CHF - US Dollar / Swiss Franc</option>
+                                <option value="USDCAD">USD/CAD - US Dollar / Canadian Dollar</option>
+                                <option value="AUDUSD">AUD/USD - Australian Dollar / US Dollar</option>
+                                <option value="NZDUSD">NZD/USD - New Zealand Dollar / US Dollar</option>
+                            </optgroup>
+                            <optgroup label="Cross Pairs">
+                                <option value="EURGBP">EUR/GBP - Euro / British Pound</option>
+                                <option value="EURJPY">EUR/JPY - Euro / Japanese Yen</option>
+                                <option value="GBPJPY">GBP/JPY - British Pound / Japanese Yen</option>
+                                <option value="AUDCAD">AUD/CAD - Australian Dollar / Canadian Dollar</option>
+                                <option value="AUDJPY">AUD/JPY - Australian Dollar / Japanese Yen</option>
+                                <option value="CADJPY">CAD/JPY - Canadian Dollar / Japanese Yen</option>
+                                <option value="NZDCAD">NZD/CAD - New Zealand Dollar / Canadian Dollar</option>
+                                <option value="NZDJPY">NZD/JPY - New Zealand Dollar / Japanese Yen</option>
+                                <option value="CADCHF">CAD/CHF - Canadian Dollar / Swiss Franc</option>
+                                <option value="EURCHF">EUR/CHF - Euro / Swiss Franc</option>
+                                <option value="AUDNZD">AUD/NZD - Australian Dollar / New Zealand Dollar</option>
+                                <option value="CHFJPY">CHF/JPY - Swiss Franc / Japanese Yen</option>
+                            </optgroup>
+                            <optgroup label="Precious Metals">
+                                <option value="XAUUSD">XAU/USD - Gold / US Dollar</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="stopLoss">
+                                Stop Loss (pips)
+                                <span class="info-icon" data-tooltip="Distance from entry to stop loss in pips">ℹ️</span>
+                            </label>
+                            <div class="dynamic-hint" id="stopLossHint">💡 Tip: Use ATR for volatility-based stop loss.</div>
+                            <input type="number" id="stopLoss" class="form-input" placeholder="50" step="1" min="1" data-unit="pips">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="entryPrice">Entry Price (optional)</label>
+                            <input type="number" id="entryPrice" class="form-input" placeholder="Auto" step="0.00001">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="rewardRatio">Risk:Reward Ratio</label>
+                        <div class="rr-buttons">
+                            <button class="rr-btn active" data-ratio="1:1">1:1</button>
+                            <button class="rr-btn" data-ratio="1:2">1:2</button>
+                            <button class="rr-btn" data-ratio="1:3">1:3</button>
+                            <button class="rr-btn" data-ratio="custom">Custom</button>
+                        </div>
+                        <input type="text" id="customRR" class="form-input custom-rr" placeholder="e.g., 1:4" style="display: none;">
+                    </div>
+
+                    <button class="btn btn-calculate" id="calculateBtn">
+                        <span class="btn-text">Calculate Position Size</span>
+                        <span class="btn-loader" style="display: none;">⏳</span>
+                    </button>
+                </div>
+
+                <!-- Results Card -->
+                <div class="card results-card" id="resultsCard" style="display: none;">
+                    <h2 class="card-title">Results</h2>
+                    
+                    <div class="result-highlight">
+                        <div class="result-label">Recommended Lot Size</div>
+                        <div class="result-value glow" id="lotSize">0.00</div>
+                    </div>
+
+                    <div class="result-item">
+                        <span class="result-label">Money at Risk</span>
+                        <span class="result-value risk" id="moneyRisk">$0.00</span>
+                    </div>
+
+                    <div class="result-item">
+                        <span class="result-label">Potential Profit (TP)</span>
+                        <span class="result-value profit" id="potentialProfit">$0.00</span>
+                    </div>
+
+                    <div class="result-item">
+                        <span class="result-label">Potential Loss (SL)</span>
+                        <span class="result-value loss" id="potentialLoss">$0.00</span>
+                    </div>
+
+                    <!-- R:R Visual -->
+                    <div class="rr-visual">
+                        <div class="rr-label">Risk vs Reward</div>
+                        <div class="rr-bar">
+                            <div class="rr-bar-risk" id="rrBarRisk" style="width: 50%">
+                                <span>Risk</span>
+                            </div>
+                            <div class="rr-bar-reward" id="rrBarReward" style="width: 50%">
+                                <span>Reward</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Progress -->
+                    <div class="risk-progress">
+                        <div class="progress-label">
+                            <span>Account Risk</span>
+                            <span id="riskProgressPercent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="riskProgressFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="success-indicator" id="successIndicator" style="display: none;">✓</div>
+                    <button class="btn btn-secondary" id="copyResultsBtn">📋 Copy Results</button>
+                </div>
+            </div>
+
+            <!-- Motivation Quote Section -->
+            <div class="quote-section" id="quoteSection" style="display: none;">
+                <div class="quote-icon">💭</div>
+                <p class="quote-text" id="quoteText">Discipline is the best strategy.</p>
+                <button class="quote-refresh" id="refreshQuote" aria-label="New quote">🔄</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reset Button -->
+    <button class="reset-button" id="resetBtn" title="Reset Calculator (Press R)">
+        <span class="reset-icon">↻</span>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="disclaimer">⚠️ <strong>Disclaimer:</strong> The results from this calculator are for informational purposes only and may differ from actual outcomes due to market conditions. Please use caution and consider professional advice before making trading decisions.</p>
+            <div class="watermark">⚡ ForexCalc Pro © 2025</div>
+        </div>
+    </footer>
+
+    <!-- Tooltip Container -->
+    <div class="tooltip-popup" id="tooltipPopup" style="display: none;"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
