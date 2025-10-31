@@ -235,17 +235,6 @@
     <div class="tooltip-popup" id="tooltipPopup" style="display: none;"></div>
 
     <script src="app.js"></script>
-<script>
-document.getElementById('downloadBtn').addEventListener('click', function() {
-  const data = "Example: Account Balance: $1000\nRisk per Trade: 1%\nResult: 0.01 lot";
-  const blob = new Blob([data], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'ForexCal_Result.txt';
-  a.click();
-  URL.revokeObjectURL(url);
-});
-</script>
+    
 </body>
 </html>
